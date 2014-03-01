@@ -7,13 +7,17 @@ raise 'allup build failed' unless system('GOPATH=`pwd` go build -o allup main')
 
 require 'httparty'
 
-def is_netlocal_running
+def is_running(url)
   begin
-    HTTParty.get("http://localhost:9999")
+    HTTParty.get(url)
     return true
   rescue Errno::ECONNREFUSED
     return false
   end
+end
+
+def is_netlocal_running
+  is_running("http://localhost:9999")
 end
 
 if !is_netlocal_running
@@ -26,6 +30,7 @@ if !is_netlocal_running
   puts
 end
 
+fail "===> CouchDB must not be running on port 5984" if is_running("http://localhost:5984")
 
 
 Before do

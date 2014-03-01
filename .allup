@@ -1,0 +1,5 @@
+{
+  "commands": {
+    "test": "GOPATH=`pwd` go test allup"
+  }
+}

@@ -2,11 +2,11 @@ Feature: validating couchdb installation
   Background:
     Given my allup file contains:
       """
-      { couchdb: true }
+      { "couchdb": true }
       """
 
   Scenario: couchdb is ready to go
-    Given GET "http://localhost:5984" responds:
+    Given GET "http://localhost:5984/" responds:
       """
       {"couchdb":"Welcome","uuid":"00000000000000000000000000000000","version":"1.5.0","vendor":{"version":"1.5.0-1","name":"Homebrew"}}
       """
@@ -14,7 +14,7 @@ Feature: validating couchdb installation
     Then the output should contain "couchdb: OK"
 
   Scenario: no couchdb on the expected port
-    Given GET "http://localhost:5984" does not connect
+    Given GET "http://localhost:5984/" does not connect
     When I run `allup`
     Then the output should contain "couchdb: not running on port 5984"
     And the output should contain "brew install couchdb"

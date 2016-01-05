@@ -28,6 +28,8 @@ is optional if your project doesn't require it.
 
 ## Development commands
 
+Requires ruby-2.2.3, the bundler gem, and go-1.5.1.
+
  - Bootstrap: `bundle`
  - Run acceptance tests: `cucumber`
  - Run tests: ``GOPATH=`pwd` go test allup``
